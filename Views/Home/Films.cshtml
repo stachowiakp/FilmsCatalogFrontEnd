@@ -1,0 +1,20 @@
+﻿@model IEnumerable<TicketingFrontEnd.Models.Films>
+
+<div class="text-center">
+    <table style="width:80%;align-content:center">
+        <tr>
+           
+            <td>Title</td>
+            <td>Screening</td>
+        </tr>
+        @foreach(var fm in Model){
+        <tr>
+            
+            <td>@fm.Title </td>
+            <td>@fm.ScreeningDate </td>
+                <td><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="FilmReservations" asp-route-Title="@fm.Title">Get Reservations for @fm.Title</a></td>
+        </tr>
+        }
+    </table>
+</div>
+
