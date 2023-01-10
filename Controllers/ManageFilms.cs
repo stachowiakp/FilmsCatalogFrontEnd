@@ -33,18 +33,6 @@ namespace TicketingFrontEnd.Controllers
 
         }
 
-        public async Task<IActionResult> FilmReservations([FromQuery(Name = "Title")] string Title)
-        {
-            HttpResponseMessage httpResponse = await FilmsApi.GetAsync($"/Api/Reservations/GetFilmReservations/{Title}");
-            if (httpResponse.IsSuccessStatusCode)
-            {
-                var Data = httpResponse.Content.ReadAsStringAsync().Result;
-                List<FilmReservations> reservations = JsonConvert.DeserializeObject<List<FilmReservations>>(Data);
-                return View(reservations);
-            }
-            else { return BadRequest(); }
-        }
-
         public IActionResult Get()
         {
             return View("NewFilmForm");
@@ -58,8 +46,18 @@ namespace TicketingFrontEnd.Controllers
             else { return BadRequest(); }
         }
 
-        public  IActionResult UpdateGet() { return View("UpdateFilmForm"); }
-        //public async Task<IActionResult> UpdatePut([FromQuery(Name = "ID")] string ID) { }
+        public  IActionResult UpdateGet([FromQuery(Name = "FilmID")] string ID) {
+            
+            ViewBag.FilmID=ID;
+
+            return View("UpdateFilmForm"); }
+        public async Task<IActionResult> UpdatePut([FromQuery(Name = "FilmID")] string ID,UpdateFilmModel updateFilm) {
+            var StrContent = new StringContent(JsonConvert.SerializeObject(updateFilm), Encoding.UTF8, "Application/JSON");
+
+            var message = await FilmsApi.PutAsync($"/api/Films/{ID}", StrContent);
+            if (message.IsSuccessStatusCode) { _logger.Log(LogLevel.Information, $"Message complete: {message.IsSuccessStatusCode}"); return RedirectToAction("Films", "ManageFilms"); }
+            else { return BadRequest(); }
+        }
         public async Task<IActionResult> Delete([FromQuery(Name = "FilmID")] string FilmID) {
             var Message = await FilmsApi.DeleteAsync($"/Api/Films/{FilmID}");
             if (Message.IsSuccessStatusCode) { return RedirectToAction("Films", "ManageFilms"); }
@@ -71,8 +69,8 @@ namespace TicketingFrontEnd.Controllers
             if (httpResponse.IsSuccessStatusCode)
             {
                 var Data = httpResponse.Content.ReadAsStringAsync().Result;
-                var films = JsonConvert.DeserializeObject(Data);
-                return View("FilmDetails",Data);
+                var filmDetails = JsonConvert.DeserializeObject<Films>(Data);
+                return View("FilmDetails",filmDetails);
             }
             else { return BadRequest(); }
 

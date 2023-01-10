@@ -8,5 +8,7 @@ namespace TicketingFrontEnd.Models
         [Required]
         [DataType(DataType.DateTime)]
         public DateTime ScreeningDate { get; set; }
+        
+    
     }
 }

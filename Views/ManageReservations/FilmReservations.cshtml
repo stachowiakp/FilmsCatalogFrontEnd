@@ -1,0 +1,27 @@
+﻿@model IEnumerable<TicketingFrontEnd.Models.FilmReservations>
+
+<div class="text-center">
+        <div style="width:80%;align-content:center">
+        <button><a class="nav-link btn btn-link text-dark" asp-area="" asp-controller="ManageReservations" asp-action="NewReservationGet">Add Reservation</a></button>
+        
+</div>
+    <table style="width:80%">
+        <tr>
+            
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Email</td>
+        </tr>
+        @foreach(var fm in Model){
+        <tr>
+            <td style ="width:20%">@fm.FirstName </td>
+            <td style="width:20%">@fm.LastName</td>
+            <td style="width:20%">@fm.Email </td>
+                <td><button><a asp-area="" asp-controller="ManageReservations" asp-action="UpdateReservationGet" asp-route-ResID="@fm.Id">Update</a></button></td>
+                <td><button><a asp-area="" asp-controller="ManageReservations" asp-action="DeleteReservation" asp-route-ResID="@fm.Id">Delete</a></button></td>
+                <td><button><a asp-area="" asp-controller="ManageReservations" asp-action="ReservationDetails" asp-route-ResID="@fm.Id">Details</a></button></td>
+        </tr>
+        }
+    </table>
+</div>
+

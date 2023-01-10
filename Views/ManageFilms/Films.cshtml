@@ -16,7 +16,7 @@
             
             <td>@fm.Title </td>
             <td>@fm.ScreeningDate </td>
-                <td><button><a  asp-area="" asp-controller="ManageFilms" asp-action="FilmReservations" asp-route-FilmID="@fm.Title">Reservations</a></button></td>
+                <td><button><a asp-area="" asp-controller="ManageReservations" asp-action="FilmReservations" asp-route-FilmID="@fm.ID">Reservations</a></button></td>
                 <td><button><a asp-area="" asp-controller="ManageFilms" asp-action="UpdateGet" asp-route-FilmID="@fm.ID">Update</a></button></td>
                 <td><button><a asp-area="" asp-controller="ManageFilms" asp-action="Delete" asp-route-FilmID="@fm.ID">Delete</a></button></td>
                 <td><button><a asp-area="" asp-controller="ManageFilms" asp-action="Details" asp-route-FilmID="@fm.ID">Details</a></button></td>

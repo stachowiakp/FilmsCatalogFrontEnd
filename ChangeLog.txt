@@ -1,0 +1,3 @@
+﻿10.01.2023 - Init ChangeLog:
+-Finished FrontEnd project for FilmsCatalogAPI
+-Added CRUD for Films and Reservations using MVC
