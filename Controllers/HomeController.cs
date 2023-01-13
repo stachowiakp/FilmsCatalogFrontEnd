@@ -7,6 +7,7 @@ using TicketingFrontEnd.Models;
 
 namespace TicketingFrontEnd.Controllers
 {
+    //Home Controller - default Microsoft controller of demo app
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
