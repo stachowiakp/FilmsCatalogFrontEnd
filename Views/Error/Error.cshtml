@@ -1,0 +1,30 @@
+﻿@model TicketingFrontEnd.Models.CustomError
+
+<div>
+    <h4>Error has occured.</h4>
+    <h3>We are sorry for inconviniences!</h3>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ErrorName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ErrorName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ErrorCode)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ErrorCode)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Films" asp-controller="ManageFilms">Back to Films list</a>
+</div>
